@@ -40,9 +40,9 @@ rmChar c s = filter (/= c) s
 
 -- EX 7 b
 
-rmCharsRec :: String -> String -> String
+rmCharsRec :: [Char] -> String -> String
 rmCharsRec [] s = s
-rmCharsRec (c:cs) s = rmCharsRec cs (rmChar c s)
+rmCharsRec (h:t) s = rmCharsRec t (rmChar h s)
 
 -- EX 7 c
 
@@ -52,7 +52,7 @@ rmCharsFold cs s = foldr rmChar s cs
 -- EX 8
 
 myReverse :: [Int] -> [Int]
-myReverse l = foldl (\acc x -> x : acc) [] l
+myReverse l = foldr (\x acc -> acc ++ [x]) [] l
 
 -- EX 9
 
@@ -74,4 +74,6 @@ union l1 l2 = foldr (\x acc -> if myElem x acc then acc else x : acc) l2 l1
 intersect :: [Int] -> [Int] -> [Int]
 intersect l1 l2 = foldr (\x acc -> if myElem x l2 then x : acc else acc) [] l1
 
--- EX 13
+-- EX 13 
+
+permutations :: [Int] -> [[Int]]
