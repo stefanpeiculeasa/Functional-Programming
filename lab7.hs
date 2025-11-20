@@ -42,7 +42,7 @@ data IntSearchTree value
       Int                       -- cheia elementului
       (Maybe value)             -- valoarea elementului
       (IntSearchTree value)     -- elemente cu cheia mai mare
-    deriving (Eq, Show)
+  deriving (Eq, Show)
 
 -- 4
 
@@ -119,14 +119,15 @@ toList = \tree -> case tree of
 -- 10
 
 fromList :: [(Int, value)] -> IntSearchTree value 
-fromList = \lst -> foldr (\(k, v) acc -> insert k v acc) Empty lst
+fromList = \lst -> case lst of
+            [] -> Empty
+            (k,v):xs -> insert k v (fromList xs)
 
--- 11
-
+-- 11 
 printTree :: IntSearchTree value -> String
 printTree = \tree -> case tree of
             Empty -> ""
             BNode left k _ right ->
               let leftStr = printTree left
                   rightStr = printTree right
-                  in "(" ++ leftStr ++ ") " ++ show k ++ " (" ++ rightStr ++ ")"
+                  in "(" ++ leftStr ++ ")" ++ " " ++ show k ++ " " ++ "(" ++ rightStr ++ ")"
