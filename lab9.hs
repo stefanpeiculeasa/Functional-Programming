@@ -63,7 +63,7 @@ class (Scalar a) => Vector v a where
   smult :: a -> v a -> v a  -- inmultire cu scalare
   negatev :: v a -> v a -- negare vector
 
-data Vector2 a = V2 a a deriving Show
+data Vector2 a = V2 a a
 
 instance (Scalar a) => Vector Vector2 a where
   zerov = V2 zero zero
@@ -72,7 +72,7 @@ instance (Scalar a) => Vector Vector2 a where
   smult s (V2 x y) = V2 (mult s x) (mult s y)
   negatev (V2 x y) = V2 (negates x) (negates y)
 
-data Vector3 a = V3 a a a deriving Show
+data Vector3 a = V3 a a a
 
 instance (Scalar a) => Vector Vector3 a where
   zerov = V3 zero zero zero
